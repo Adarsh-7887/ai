@@ -1,0 +1,984 @@
+/* ==========================================================================
+   Bayesian Network for Intelligent Medical Analysis - Stylesheet
+   AI/ML Project
+   ========================================================================== */
+
+:root {
+    /* Color Palette */
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --bg-card-alt: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    
+    /* Brand & Accent Colors */
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --primary-light: #eff6ff;
+    --primary-border: #bfdbfe;
+    
+    --accent-cyan: #06b6d4;
+    --accent-indigo: #4f46e5;
+    
+    /* Risk Levels */
+    --risk-low-bg: #ecfdf5;
+    --risk-low-text: #065f46;
+    --risk-low-border: #a7f3d0;
+    --risk-low-fill: linear-gradient(90deg, #10b981, #059669);
+
+    --risk-mod-bg: #fffbeb;
+    --risk-mod-text: #92400e;
+    --risk-mod-border: #fde68a;
+    --risk-mod-fill: linear-gradient(90deg, #f59e0b, #d97706);
+
+    --risk-high-bg: #fef2f2;
+    --risk-high-text: #991b1b;
+    --risk-high-border: #fecaca;
+    --risk-high-fill: linear-gradient(90deg, #ef4444, #dc2626);
+
+    /* Shadows & Radii */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius-full: 9999px;
+
+    /* Fonts */
+    --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Base & Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 24px 16px;
+    min-height: 100vh;
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ==========================================================================
+   Header Styles
+   ========================================================================== */
+.app-header {
+    text-align: center;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    padding: 32px 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.app-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.header-badge-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: var(--radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.02em;
+}
+
+.academic-badge {
+    background: rgba(255, 255, 255, 0.12);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+.ai-badge {
+    background: rgba(56, 189, 248, 0.15);
+    color: #38bdf8;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.main-title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 30%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Disclaimer Alert Banner
+   ========================================================================== */
+.disclaimer-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #92400e;
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.disclaimer-icon {
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.disclaimer-text {
+    font-size: 0.92rem;
+    line-height: 1.45;
+}
+
+/* ==========================================================================
+   Dashboard Grid Layout
+   ========================================================================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 980px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.left-column,
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ==========================================================================
+   Card Common Styles
+   ========================================================================== */
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.card-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-md);
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.015em;
+}
+
+.card-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   Sample Cases Section
+   ========================================================================== */
+.cases-button-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.btn-case {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.btn-case:hover {
+    background: #f0fdf4;
+    border-color: #86efac;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.case-btn-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.case-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+}
+
+.tag-mild {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.tag-flu {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.tag-resp {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.case-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.case-preview {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+
+.case-preview b {
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Patient Input Section (Symptom Controls)
+   ========================================================================== */
+.symptom-controls-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.symptom-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+}
+
+.symptom-item.active {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    box-shadow: 0 0 0 1px #93c5fd;
+}
+
+.symptom-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.symptom-emoji {
+    font-size: 1.5rem;
+}
+
+.symptom-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.symptom-label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.symptom-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Segmented Yes/No Switch */
+.switch-toggle {
+    display: inline-flex;
+    background: #e2e8f0;
+    border-radius: var(--radius-full);
+    padding: 4px;
+    position: relative;
+    user-select: none;
+}
+
+.switch-toggle input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch-toggle label {
+    position: relative;
+    z-index: 2;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s ease;
+    border-radius: var(--radius-full);
+}
+
+.switch-toggle input[type="radio"]:checked + label {
+    color: #ffffff;
+}
+
+.switch-toggle input[value="no"]:checked + label {
+    background: #64748b;
+    box-shadow: var(--shadow-sm);
+}
+
+.switch-toggle input[value="yes"]:checked + label {
+    background: #2563eb;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.4);
+}
+
+/* Action Buttons */
+.form-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 13px 24px;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    flex: 2;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: var(--text-secondary);
+    border: 1px solid #cbd5e1;
+    flex: 1;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+    color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Bayesian Network Interactive Diagram (SVG)
+   ========================================================================== */
+.network-diagram-wrapper {
+    background: #0f172a;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    color: #f8fafc;
+}
+
+.network-legend {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    color: #94a3b8;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.symptom-dot { background: #334155; border: 1px solid #64748b; }
+.disease-dot { background: #1e3a8a; border: 1px solid #3b82f6; }
+.active-dot  { background: #38bdf8; box-shadow: 0 0 6px #38bdf8; }
+
+.svg-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.bn-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* SVG Elements Styling */
+.network-edge {
+    stroke: #475569;
+    stroke-width: 2;
+    fill: none;
+    transition: all 0.3s ease;
+}
+
+.network-edge.active-edge {
+    stroke: #38bdf8;
+    stroke-width: 3.2;
+    stroke-dasharray: 6 3;
+    animation: dash 1s linear infinite;
+    filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.7));
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -18;
+    }
+}
+
+.node-group {
+    cursor: default;
+    transition: transform 0.2s ease;
+}
+
+.node-box {
+    fill: #1e293b;
+    stroke: #475569;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.node-title {
+    font-family: var(--font-main);
+    font-size: 13px;
+    font-weight: 700;
+    fill: #e2e8f0;
+    text-anchor: middle;
+}
+
+.node-state {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    fill: #94a3b8;
+    text-anchor: middle;
+}
+
+/* Active Symptom Nodes */
+.symptom-node.active .node-box {
+    fill: #0c4a6e;
+    stroke: #38bdf8;
+    stroke-width: 2.5;
+    filter: url(#glow);
+}
+
+.symptom-node.active .node-title {
+    fill: #ffffff;
+}
+
+.symptom-node.active .node-state {
+    fill: #7dd3fc;
+    font-weight: 700;
+}
+
+/* Disease Nodes */
+.disease-box {
+    fill: #0f172a;
+    stroke: #3b82f6;
+    stroke-width: 2.5;
+}
+
+.disease-title {
+    font-size: 14px;
+    fill: #93c5fd;
+    font-weight: 800;
+}
+
+.disease-prob {
+    font-size: 12px;
+    fill: #38bdf8;
+    font-weight: 700;
+}
+
+.disease-node.dominant .disease-box {
+    stroke: #22c55e;
+    fill: #052e16;
+    filter: url(#glow);
+}
+
+.disease-node.dominant .disease-title {
+    fill: #86efac;
+}
+
+.disease-node.dominant .disease-prob {
+    fill: #4ade80;
+}
+
+/* ==========================================================================
+   Results Section
+   ========================================================================== */
+.most-likely-banner {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid #334155;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.banner-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.banner-winner {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #38bdf8;
+    margin-bottom: 4px;
+}
+
+.banner-subtext {
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+/* Disease Result Card */
+.disease-prob-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 18px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.disease-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.disease-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.disease-icon {
+    font-size: 1.6rem;
+}
+
+.disease-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.disease-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.prob-badge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.prob-number {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.risk-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.risk-low {
+    background: var(--risk-low-bg);
+    color: var(--risk-low-text);
+    border: 1px solid var(--risk-low-border);
+}
+
+.risk-moderate {
+    background: var(--risk-mod-bg);
+    color: var(--risk-mod-text);
+    border: 1px solid var(--risk-mod-border);
+}
+
+.risk-high {
+    background: var(--risk-high-bg);
+    color: var(--risk-high-text);
+    border: 1px solid var(--risk-high-border);
+}
+
+/* Visual Progress Bar */
+.progress-track {
+    width: 100%;
+    height: 12px;
+    background: #e2e8f0;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: var(--radius-full);
+    transition: width 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+}
+
+.risk-scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Explanation Container */
+.explanation-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-top: 10px;
+}
+
+.explanation-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.exp-icon {
+    font-size: 1.2rem;
+}
+
+.exp-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #166534;
+}
+
+.exp-text {
+    font-size: 0.9rem;
+    color: #14532d;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Viva & Mathematical Breakdown Section
+   ========================================================================== */
+.viva-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+}
+
+.collapsible-header {
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+}
+
+.viva-header-text {
+    flex: 1;
+}
+
+.btn-toggle-viva {
+    background: var(--primary-light);
+    border: 1px solid var(--primary-border);
+    color: var(--primary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.btn-toggle-viva.rotated {
+    transform: rotate(180deg);
+}
+
+.viva-content {
+    display: none;
+    padding-top: 20px;
+    margin-top: 16px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.viva-content.open {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.formula-block {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 14px;
+    margin-bottom: 16px;
+}
+
+.formula-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.formula-math {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
+    background: #ffffff;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid #cbd5e1;
+    margin-bottom: 8px;
+    overflow-x: auto;
+}
+
+.formula-math .num { color: #2563eb; }
+.formula-math .den { color: #d97706; }
+
+.formula-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Viva Table */
+.viva-step-log {
+    margin-bottom: 16px;
+}
+
+.log-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.log-table-wrapper {
+    overflow-x: auto;
+}
+
+.viva-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.viva-table th, 
+.viva-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+}
+
+.viva-table th {
+    background: #f1f5f9;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.viva-table td {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.viva-table .highlight-val {
+    font-weight: 700;
+    color: #2563eb;
+}
+
+/* CPT Grid */
+.cpt-tables-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+@media (max-width: 600px) {
+    .cpt-tables-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cpt-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: var(--radius-md);
+    padding: 12px;
+}
+
+.cpt-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.cpt-list {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cpt-list code {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    background: #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #0f172a;
+}
+
+/* ==========================================================================
+   Footer Styles
+   ========================================================================== */
+.app-footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 12px;
+}
+
+.footer-note {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
